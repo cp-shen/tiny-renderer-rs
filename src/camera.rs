@@ -1,21 +1,19 @@
 use cgmath::*;
-
-type Mat4 = Matrix4<f32>;
+use crate::*;
 
 #[derive(Clone, Copy)]
 struct Camera {
-    fov_y: f32,
-    aspect: f32,
-    near: f32,
-    far: f32,
+    perspective: PerspectiveFov<f32>,
+    position: Vec3,
+    rotation: Quat,
 }
 
 impl Camera {
-    fn projection_mat() -> Mat4 {
-        unimplemented!();
+    fn projection_mat(&self) -> Mat4 {
+        Mat4::from(self.perspective)
     }
 
-    fn view_mat() -> Mat4 {
+    fn view_mat(&self) -> Mat4 {
         unimplemented!();
     }
 }
