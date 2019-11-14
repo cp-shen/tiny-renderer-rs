@@ -1,9 +1,11 @@
-//type Vec3 = cgmath::Vector3<f32>;
-#[allow(dead_code)]
+type Vec3 = cgmath::Vector3<f32>;
 type Vec2 = cgmath::Vector2<f32>;
+type DrawResult = Result<(), ()>;
+
 
 use image::*;
 use std::result::Result::*;
+use tobj::*;
 
 /// check the position of point p and line ab
 /// # Returns
@@ -18,13 +20,7 @@ fn edge_fn(a: Vec2, b: Vec2, p: Vec2) -> f32 {
 /// draw a triangle using given vertices and color
 /// the vertices are assumed to be counter-clockwise
 #[allow(dead_code)]
-fn draw_tri(
-    t0: Vec2,
-    t1: Vec2,
-    t2: Vec2,
-    mut canvas: RgbaImage,
-    pixel: Rgba<u8>,
-) -> Result<(), ()> {
+fn draw_tri(t0: Vec2, t1: Vec2, t2: Vec2, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult {
     let (t0, t1, t2) = match counter_clockwise(t0, t1, t2) {
         Ok((t0, t1, t2)) => (t0, t1, t2),
         Err(()) => return Err(()),
@@ -71,7 +67,7 @@ fn draw_tri(
             };
 
             if overlaps {
-                canvas.put_pixel(x as u32, y as u32, pixel);
+                canvas.put_pixel(x as u32, y as u32, color);
             }
         }
     }
@@ -89,4 +85,63 @@ fn counter_clockwise(t0: Vec2, t1: Vec2, t2: Vec2) -> Result<(Vec2, Vec2, Vec2),
     }
 
     Ok((t0, t1, t2))
+}
+
+#[allow(dead_code)]
+fn draw_tri_world(
+    t0: Vec3,
+    t1: Vec3,
+    t2: Vec3,
+    canvas: &mut RgbaImage,
+    color: Rgba<u8>,
+) -> DrawResult {
+    unimplemented!();
+}
+
+#[allow(dead_code)]
+fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult {
+    assert_eq!(mesh.positions.len() % 3, 0);
+    let num_vert = mesh.positions.len() / 3;
+
+    assert_eq!(num_vert % 3, 0);
+    let num_tri = num_vert / 3;
+
+    let mut tri: [Vec3; 3];
+    for i in 0..num_tri {
+        tri = [
+            Vec3 {
+                x: mesh.positions[i * 9 + 0],
+                y: mesh.positions[i * 9 + 1],
+                z: mesh.positions[i * 9 + 2],
+            },
+            Vec3 {
+                x: mesh.positions[i * 9 + 3],
+                y: mesh.positions[i * 9 + 4],
+                z: mesh.positions[i * 9 + 5],
+            },
+            Vec3 {
+                x: mesh.positions[i * 9 + 6],
+                y: mesh.positions[i * 9 + 7],
+                z: mesh.positions[i * 9 + 8],
+            },
+        ];
+
+        draw_tri_world(tri[0], tri[1], tri[2], canvas, color);
+    }
+
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn draw_human_head() {
+        use std::path::Path;
+        let mod_load_result =
+            tobj::load_obj(&Path::new("resources/models/african_head/african_head.obj"));
+
+        assert!(mod_load_result.is_ok());
+
+        unimplemented!();
+    }
 }

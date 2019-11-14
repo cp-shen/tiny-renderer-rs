@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod test {
+mod tests {
     #[test]
     pub fn load_model() {
         use std::path::Path;
