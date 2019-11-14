@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 tobj = "0.1.11"
 image = "0.22.3"
+cgmath = "0.17.0"
