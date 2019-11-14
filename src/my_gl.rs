@@ -2,7 +2,6 @@ type Vec3 = cgmath::Vector3<f32>;
 type Vec2 = cgmath::Vector2<f32>;
 type DrawResult = Result<(), ()>;
 
-
 use image::*;
 use std::result::Result::*;
 use tobj::*;
