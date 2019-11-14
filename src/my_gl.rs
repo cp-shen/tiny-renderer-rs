@@ -45,7 +45,8 @@ fn draw_tri(
     for x in min_x..max_x + 1 {
         for y in min_y..max_y + 1 {
             let mut overlaps = true;
-            let p_center = Vec2 { x: p.x as f32 + 0.5,
+            let p_center = Vec2 {
+                x: p.x as f32 + 0.5,
                 y: p.y as f32 + 0.5,
             };
 
@@ -53,9 +54,21 @@ fn draw_tri(
             let w1 = edge_fn(t2, t0, p_center);
             let w2 = edge_fn(t0, t1, p_center);
 
-            overlaps &= if w0 == 0_f32 { (edge12.y == 0_f32 && edge12.x < 0_f32) || edge12.y < 0_f32 } else { w0 > 0_f32 };
-            overlaps &= if w1 == 0_f32 { (edge02.y == 0_f32 && edge02.x < 0_f32) || edge02.y < 0_f32 } else { w1 > 0_f32 };
-            overlaps &= if w2 == 0_f32 { (edge01.y == 0_f32 && edge01.x < 0_f32) || edge01.y < 0_f32 } else { w2 > 0_f32 };
+            overlaps &= if w0 == 0_f32 {
+                (edge12.y == 0_f32 && edge12.x < 0_f32) || edge12.y < 0_f32
+            } else {
+                w0 > 0_f32
+            };
+            overlaps &= if w1 == 0_f32 {
+                (edge02.y == 0_f32 && edge02.x < 0_f32) || edge02.y < 0_f32
+            } else {
+                w1 > 0_f32
+            };
+            overlaps &= if w2 == 0_f32 {
+                (edge01.y == 0_f32 && edge01.x < 0_f32) || edge01.y < 0_f32
+            } else {
+                w2 > 0_f32
+            };
 
             if overlaps {
                 canvas.put_pixel(x as u32, y as u32, pixel);
