@@ -1,5 +1,5 @@
-use cgmath::*;
 use crate::*;
+use cgmath::*;
 
 #[derive(Clone, Copy)]
 struct Camera {
@@ -14,6 +14,8 @@ impl Camera {
     }
 
     fn view_mat(&self) -> Mat4 {
-        unimplemented!();
+        let rot_mat = Mat4::from(self.rotation);
+        let trans_mat = Mat4::from_translation(self.position);
+        trans_mat * rot_mate
     }
 }
