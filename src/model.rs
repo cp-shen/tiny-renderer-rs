@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod tests {
     #[test]
+    #[allow(unused_variables)]
     pub fn load_model() {
         use std::path::Path;
 

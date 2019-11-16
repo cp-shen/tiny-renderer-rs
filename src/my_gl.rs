@@ -136,8 +136,10 @@ mod tests {
     #[test]
     fn draw_human_head() {
         use std::path::Path;
-        let mod_load_result =
-            tobj::load_obj(&Path::new("resources/models/african_head/african_head.obj"));
+        let mod_load_result = tobj::load_obj(&Path::new(
+            "resources/models/african_head/\
+             african_head.obj",
+        ));
 
         assert!(mod_load_result.is_ok());
 
