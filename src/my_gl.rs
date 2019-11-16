@@ -85,7 +85,8 @@ fn counter_clockwise(t0: Vec2, t1: Vec2, t2: Vec2) -> Result<(Vec2, Vec2, Vec2),
     Ok((t0, t1, t2))
 }
 
-#[allow(dead_code)]
+//TODO: remove allow unused_variables
+#[allow(dead_code, unused_variables)]
 fn draw_tri_world(
     t0: Vec3,
     t1: Vec3,
