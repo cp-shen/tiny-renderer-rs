@@ -2,12 +2,14 @@ use crate::*;
 use cgmath::*;
 
 #[derive(Clone, Copy)]
+#[allow(dead_code)]
 struct Camera {
     perspective: PerspectiveFov<f32>,
     position: Vec3,
     rotation: Quat,
 }
 
+#[allow(dead_code)]
 impl Camera {
     fn projection_mat(&self) -> Mat4 {
         Mat4::from(self.perspective)

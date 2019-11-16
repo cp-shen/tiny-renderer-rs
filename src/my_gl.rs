@@ -124,7 +124,7 @@ fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult 
             },
         ];
 
-        draw_tri_world(tri[0], tri[1], tri[2], canvas, color);
+        draw_tri_world(tri[0], tri[1], tri[2], canvas, color)?
     }
 
     Ok(())
