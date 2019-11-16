@@ -133,6 +133,8 @@ fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult 
 
 #[cfg(test)]
 mod tests {
+    use crate::my_gl::draw_mesh;
+
     #[test]
     fn draw_human_head() {
         use std::path::Path;
@@ -142,6 +144,16 @@ mod tests {
         ));
 
         assert!(mod_load_result.is_ok());
+        let (models, _) = mod_load_result.unwrap();
+
+        let img_w = 800;
+        let img_h = 800;
+        let mut img = image::ImageBuffer::new(img_w, img_h);
+
+        for model in models {
+            let color = image::Rgba([0, 0, 0, 0]);
+            assert!(draw_mesh(model.mesh, &mut img, color).is_ok());
+        }
 
         unimplemented!();
     }
