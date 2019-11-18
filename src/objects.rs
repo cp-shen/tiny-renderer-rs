@@ -2,7 +2,7 @@ use crate::*;
 use cgmath::*;
 
 #[allow(dead_code)]
-struct Scene {
+pub struct Scene {
     models: Vec<tobj::Model>,
     camera: Camera,
 }
@@ -17,10 +17,6 @@ impl Scene {
     }
 }
 
-trait RenderTarget {
-    fn render(scene: Scene);
-}
-
 #[derive(Clone, Copy)]
 #[allow(dead_code)]
 pub struct Camera {
@@ -28,6 +24,7 @@ pub struct Camera {
     position: Vec3,
     rotation: Quat,
 }
+
 #[allow(dead_code)]
 impl Camera {
     fn projection_mat(&self) -> Mat4 {
