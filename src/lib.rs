@@ -1,7 +1,7 @@
 mod model;
 mod my_gl;
 mod objects;
-mod render_target;
+mod render_targets;
 mod transform;
 
 type Vec3 = cgmath::Vector3<f32>;
