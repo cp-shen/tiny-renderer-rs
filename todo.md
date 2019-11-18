@@ -1,0 +1,3 @@
+- draw a model with basic texture and lighting
+  - use openGL backend
+  - use self-implemented pure software rendering API
