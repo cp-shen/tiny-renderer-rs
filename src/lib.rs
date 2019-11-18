@@ -1,6 +1,6 @@
-mod camera;
 mod model;
 mod my_gl;
+mod objects;
 mod transform;
 
 type Vec3 = cgmath::Vector3<f32>;

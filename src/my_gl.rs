@@ -154,7 +154,5 @@ mod tests {
             let color = image::Rgba([0, 0, 0, 0]);
             assert!(draw_mesh(model.mesh, &mut img, color).is_ok());
         }
-
-        unimplemented!();
     }
 }
