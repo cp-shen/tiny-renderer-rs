@@ -99,29 +99,28 @@ fn draw_tri_world(
 
 #[allow(dead_code)]
 fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult {
-    assert_eq!(mesh.positions.len() % 3, 0);
-    let num_vert = mesh.positions.len() / 3;
-
-    assert_eq!(num_vert % 3, 0);
-    let num_tri = num_vert / 3;
+    let num_tri = mesh.indices.len() / 3;
 
     let mut tri: [Vec3; 3];
     for i in 0..num_tri {
+        let i0 = mesh.indices[i * 3 + 0] as usize;
+        let i1 = mesh.indices[i * 3 + 1] as usize;
+        let i2 = mesh.indices[i * 3 + 2] as usize;
         tri = [
             Vec3 {
-                x: mesh.positions[i * 9 + 0],
-                y: mesh.positions[i * 9 + 1],
-                z: mesh.positions[i * 9 + 2],
+                x: mesh.positions[i0 * 3 + 0],
+                y: mesh.positions[i0 * 3 + 1],
+                z: mesh.positions[i0 * 3 + 2],
             },
             Vec3 {
-                x: mesh.positions[i * 9 + 3],
-                y: mesh.positions[i * 9 + 4],
-                z: mesh.positions[i * 9 + 5],
+                x: mesh.positions[i1 * 3 + 3],
+                y: mesh.positions[i1 * 3 + 4],
+                z: mesh.positions[i1 * 3 + 5],
             },
             Vec3 {
-                x: mesh.positions[i * 9 + 6],
-                y: mesh.positions[i * 9 + 7],
-                z: mesh.positions[i * 9 + 8],
+                x: mesh.positions[i2 * 3 + 6],
+                y: mesh.positions[i2 * 3 + 7],
+                z: mesh.positions[i2 * 3 + 8],
             },
         ];
 
