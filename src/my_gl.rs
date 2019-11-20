@@ -113,14 +113,14 @@ fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult 
                 z: mesh.positions[i0 * 3 + 2],
             },
             Vec3 {
-                x: mesh.positions[i1 * 3 + 3],
-                y: mesh.positions[i1 * 3 + 4],
-                z: mesh.positions[i1 * 3 + 5],
+                x: mesh.positions[i1 * 3 + 0],
+                y: mesh.positions[i1 * 3 + 1],
+                z: mesh.positions[i1 * 3 + 2],
             },
             Vec3 {
-                x: mesh.positions[i2 * 3 + 6],
-                y: mesh.positions[i2 * 3 + 7],
-                z: mesh.positions[i2 * 3 + 8],
+                x: mesh.positions[i2 * 3 + 0],
+                y: mesh.positions[i2 * 3 + 1],
+                z: mesh.positions[i2 * 3 + 2],
             },
         ];
 
