@@ -1,6 +1,6 @@
 use crate::*;
 
-struct Transform {
+pub struct Transform {
     scale: Vec3,
     translation: Vec3,
     rotation: Quat,

@@ -4,8 +4,9 @@ use std::path::Path;
 
 #[allow(dead_code)]
 pub struct Scene {
-    models: Vec<tobj::Model>,
-    camera: Camera,
+    pub models: Vec<tobj::Model>,
+    pub camera: Camera,
+    pub directional_light: DirectionalLight,
 }
 
 impl Scene {
@@ -14,6 +15,7 @@ impl Scene {
         Scene {
             models: vec![],
             camera: Camera::new(),
+            directional_light: DirectionalLight::new(),
         }
     }
 
@@ -27,6 +29,7 @@ impl Scene {
         Scene {
             models,
             camera: Camera::new(),
+            directional_light: DirectionalLight::new(),
         }
     }
 }
@@ -62,5 +65,25 @@ impl Camera {
             position: Vec3::new(0_f32, 0_f32, 0_f32),
             rotation: Quat::new(1_f32, 0_f32, 0_f32, 0_f32),
         }
+    }
+}
+
+pub struct DirectionalLight {
+    dir: Vec3,
+}
+
+impl DirectionalLight {
+    fn new() -> DirectionalLight {
+        DirectionalLight {
+            dir: Vec3::new(0_f32, 0_f32, 1_f32),
+        }
+    }
+
+    #[allow(dead_code)]
+    fn set_dir(&mut self, dir: Vec3) {
+        if dir.magnitude() == 0_f32 {
+            panic!()
+        }
+        self.dir = dir;
     }
 }

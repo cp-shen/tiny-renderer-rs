@@ -1,18 +1,36 @@
+use crate::my_gl;
 use crate::objects::*;
+use image::*;
+use std::path::Path;
 
 trait RenderTarget {
-    #[allow(unused)]
-    fn render(scene: Scene);
+    fn render(&mut self, scene: Scene);
 }
 
 #[allow(dead_code)]
 struct ImageRenderTarget {
-    //TODO
+    image: RgbaImage,
+}
+
+impl ImageRenderTarget {
+    #[allow(dead_code)]
+    fn save_image(&self, path: &Path) -> std::io::Result<()> {
+        self.image.save(path)
+    }
+
+    fn new(width: u32, height: u32) -> ImageRenderTarget {
+        ImageRenderTarget {
+            image: RgbaImage::new(width, height),
+        }
+    }
 }
 
 impl RenderTarget for ImageRenderTarget {
-    #[allow(unused)]
-    fn render(scene: Scene) {
-        //TODO
+    fn render(&mut self, scene: Scene) {
+        for model in scene.models {
+            let color = image::Rgba([0, 0, 0, 0]);
+            let result = my_gl::draw_mesh(model.mesh, &mut self.image, color);
+            assert!(result.is_ok());
+        }
     }
 }

@@ -1,5 +1,8 @@
 type DrawResult = Result<(), ()>;
 
+use crate::objects::*;
+
+use crate::transform::*;
 use crate::*;
 use image::*;
 use std::result::Result::*;
@@ -98,7 +101,13 @@ fn draw_tri_world(
 }
 
 #[allow(dead_code)]
-fn draw_mesh(mesh: Mesh, canvas: &mut RgbaImage, color: Rgba<u8>) -> DrawResult {
+pub fn draw_mesh(
+    mesh: Mesh,
+    transform: Transform,
+    camera: Camera,
+    canvas: &mut RgbaImage,
+    color: Rgba<u8>,
+) -> DrawResult {
     let num_tri = mesh.indices.len() / 3;
 
     let mut tri: [Vec3; 3];
