@@ -7,3 +7,9 @@ trait RenderTarget {
 struct ImageRenderTarget {
     //TODO
 }
+
+impl RenderTarget for ImageRenderTarget {
+    fn render(scene: Scene) {
+        //TODO
+    }
+}
