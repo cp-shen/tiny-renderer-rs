@@ -1,8 +1,7 @@
+mod appdata;
 mod backends;
-mod model;
-mod objects;
 mod render_targets;
-mod transform;
+mod renderer;
 
 mod types {
     pub type Vec3 = cgmath::Vector3<f32>;
@@ -19,4 +18,6 @@ fn main() {
         println!("usage: <{}> <path_to_obj>", exe_name);
         std::process::exit(1);
     }
+
+    let obj_path = std::path::Path::new(args[1].as_str());
 }

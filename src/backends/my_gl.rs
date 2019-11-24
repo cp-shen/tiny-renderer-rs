@@ -140,7 +140,7 @@ pub fn draw_mesh(
 
 #[cfg(test)]
 mod tests {
-    use crate::my_gl::draw_mesh;
+    use super::draw_mesh;
 
     #[test]
     fn draw_human_head() {

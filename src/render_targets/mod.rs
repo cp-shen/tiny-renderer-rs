@@ -1,5 +1,5 @@
+use crate::appdata::scene::*;
 use crate::backends::my_gl;
-use crate::objects::*;
 use image::*;
 use std::path::Path;
 
