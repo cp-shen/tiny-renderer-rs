@@ -1,9 +1,8 @@
 type DrawResult = Result<(), ()>;
 
-use crate::objects::*;
-
-use crate::transform::*;
-use crate::*;
+//use crate::objects::*;
+//use crate::transform::*;
+use crate::types::*;
 use image::*;
 use std::result::Result::*;
 use tobj::*;
@@ -103,8 +102,8 @@ fn draw_tri_world(
 #[allow(dead_code)]
 pub fn draw_mesh(
     mesh: Mesh,
-    transform: Transform,
-    camera: Camera,
+    //transform: Transform,
+    //camera: Camera,
     canvas: &mut RgbaImage,
     color: Rgba<u8>,
 ) -> DrawResult {

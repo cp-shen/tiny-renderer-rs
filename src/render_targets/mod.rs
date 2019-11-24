@@ -18,6 +18,7 @@ impl ImageRenderTarget {
         self.image.save(path)
     }
 
+    #[allow(dead_code)]
     fn new(width: u32, height: u32) -> ImageRenderTarget {
         ImageRenderTarget {
             image: RgbaImage::new(width, height),

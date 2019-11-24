@@ -1,4 +1,4 @@
-use crate::*;
+use crate::types::*;
 use cgmath::*;
 use std::path::Path;
 
