@@ -20,4 +20,9 @@ fn main() {
     }
 
     let obj_path = std::path::Path::new(args[1].as_str());
+
+    use appdata::scene::Scene;
+    let scene = Scene::load_obj(obj_path);
+
+    renderer::render(&scene);
 }

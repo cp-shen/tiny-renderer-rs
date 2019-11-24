@@ -11,7 +11,7 @@ pub struct Scene {
 
 impl Scene {
     #[allow(dead_code)]
-    fn new() -> Scene {
+    pub fn new() -> Scene {
         Scene {
             models: vec![],
             camera: Camera::new(),
@@ -20,7 +20,7 @@ impl Scene {
     }
 
     #[allow(dead_code)]
-    fn load_obj(file_name: &Path) -> Scene {
+    pub fn load_obj(file_name: &Path) -> Scene {
         let mod_load_result = tobj::load_obj(file_name);
         assert!(mod_load_result.is_ok());
 
