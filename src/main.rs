@@ -14,8 +14,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() != 2 {
-        let exe_name = String::from(std::env::current_exe().unwrap().to_str().unwrap());
-        println!("usage: <{}> <path_to_obj>", exe_name);
+        println!("usage: <{}> <path_to_obj>", args[0]);
         std::process::exit(1);
     }
 
