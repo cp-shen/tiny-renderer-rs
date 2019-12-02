@@ -1,6 +1,5 @@
 mod appdata;
 mod backends;
-mod render_targets;
 mod renderer;
 
 mod types {
@@ -23,5 +22,6 @@ fn main() {
     use appdata::scene::Scene;
     let scene = Scene::load_obj(obj_path);
 
-    renderer::render(&scene);
+    use backends::Backend::MyGL;
+    renderer::render(&scene, MyGL);
 }

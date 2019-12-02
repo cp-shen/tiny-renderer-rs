@@ -2,10 +2,16 @@ type DrawResult = Result<(), ()>;
 
 //use crate::objects::*;
 //use crate::transform::*;
+use crate::appdata::scene::Scene;
 use crate::types::*;
 use image::*;
 use std::result::Result::*;
 use tobj::*;
+
+#[allow(unused_variables)]
+pub fn render_with_mygl(scene: &Scene) {
+    unimplemented!();
+}
 
 /// check the position of point p and line ab
 /// # Returns
