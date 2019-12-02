@@ -10,6 +10,7 @@ use tobj::*;
 
 #[allow(unused_variables)]
 pub fn render_with_mygl(scene: &Scene) {
+    let image: RgbaImage = ImageBuffer::new(1024, 1024);
     unimplemented!();
 }
 
