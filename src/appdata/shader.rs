@@ -1,3 +1,5 @@
+#![allow(non_snake_case)]
+
 use crate::backends::open_gl::gl;
 use std::ffi::{CStr, CString};
 use std::fs::File;
@@ -36,13 +38,32 @@ impl Shader {
             gl::ShaderSource(vs, 1, &vs_code_c.as_ptr(), ptr::null());
             gl::CompileShader(vs);
             shader.checkCompileErrors(vs, "VERTEX");
+
+            let fs = gl::CreateShader(gl::FRAGMENT_SHADER);
+            gl::ShaderSource(fs, 1, &fs_code_c.as_ptr(), ptr::null());
+            gl::CompileShader(fs);
+            shader.checkCompileErrors(fs, "FRAGMENT");
+
+            let pid = gl::CreateProgram();
+            gl::AttachShader(pid, vs);
+            gl::AttachShader(pid, fs);
+            gl::LinkProgram(pid);
+            shader.checkCompileErrors(pid, "PROGRAM");
+
+            gl::DeleteShader(vs);
+            gl::DeleteShader(fs);
+            shader.id = pid;
         }
 
         shader
     }
 
-    #[allow(dead_code, non_snake_case)]
+    #[allow(dead_code, unused_variables)]
     unsafe fn checkCompileErrors(&self, shader: u32, t: &str) {
         unimplemented!();
+    }
+
+    pub unsafe fn useProgram(&self) {
+        gl::UseProgram(self.id);
     }
 }
