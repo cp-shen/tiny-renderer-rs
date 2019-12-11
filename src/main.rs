@@ -1,3 +1,6 @@
+#[macro_use]
+mod macros;
+
 mod appdata;
 mod backends;
 mod renderer;
@@ -19,7 +22,7 @@ fn main() {
 
     let obj_path = std::path::Path::new(args[1].as_str());
 
-    use appdata::scene::Scene;
+    use appdata::Scene;
     let scene = Scene::load_obj(obj_path);
 
     use backends::Backend::MyGL;

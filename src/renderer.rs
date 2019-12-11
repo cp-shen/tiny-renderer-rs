@@ -1,4 +1,4 @@
-use crate::appdata::scene::Scene;
+use crate::appdata::Scene;
 use crate::backends::*;
 
 pub fn render(scene: &Scene, backend: Backend) {

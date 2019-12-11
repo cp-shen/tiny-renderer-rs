@@ -1,6 +1,10 @@
+#![allow(non_snake_case)]
+
 pub mod gl;
 
-use crate::appdata::scene::Scene;
+use crate::appdata::Model;
+use crate::appdata::Scene;
+use crate::appdata::Shader;
 use glfw::Context;
 
 const SCR_WIDTH: u32 = 800;
@@ -32,9 +36,24 @@ pub fn render_with_opengl(scene: &Scene) {
     // load OpenGL functions
     gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
 
-    unsafe {
+    let (ourShader, ourModel) = unsafe {
+        // configure global opengl state
+        // -----------------------------
         gl::Enable(gl::DEPTH_TEST);
-    }
+
+        // build and compile shaders
+        // -------------------------
+        let ourShader = Shader::new("shaders/model_loading.vert", "shaders/model_loading.frag");
+
+        // load models
+        // -----------
+        let ourModel = Model::new("resources/objects/nanosuit/nanosuit.obj");
+
+        // draw in wireframe
+        // gl::PolygonMode(gl::FRONT_AND_BACK, gl::LINE);
+
+        (ourShader, ourModel)
+    };
 
     unimplemented!();
 }

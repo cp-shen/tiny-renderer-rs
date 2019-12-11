@@ -2,7 +2,7 @@ type DrawResult = Result<(), ()>;
 
 //use crate::objects::*;
 //use crate::transform::*;
-use crate::appdata::scene::Scene;
+use crate::appdata::Scene;
 use crate::types::*;
 use image::*;
 use std::result::Result::*;
